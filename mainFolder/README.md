@@ -21,8 +21,6 @@ a) name of student
 b) add student
    you have to fill all details of a new student ,you want to add to your database.
    
-   
-   
 #Languages and Technologies used
 I have used JavaScript, EJS, Nodejs, MongoDb, Express.
 
