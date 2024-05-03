@@ -1,0 +1,47 @@
+<head>
+    <%- include('_bootstrap_meta')%>
+  
+  </head>
+  <body style="background-color: #e6e9e9">
+    <br>
+
+
+    <h2> Add Student Details</h2>
+    <br>
+ 
+
+<form action="/Students/create" method="post">
+
+    <label for="Name"> Student Name</label>
+    <input type="text" name="Name">
+
+    <label for="Batch"> Batch </label>
+    <input type="number" name="Batch">
+
+    <label for="College">College</label>
+    <input type="text" name="College">
+
+    <label for="Status">Status</label>
+    <input type="text" name="Status">
+    <br>
+
+    
+    <label for="DSA_Final_Score">DSA_Final_Score</label>
+    <input type="Number" name="DSA_Final_Score">
+    
+    <label for="WebD_Final_Score">WebD_Final_Score</label>
+    <input type="Number" name="WebD_Final_Score">
+    
+
+    <label for="React_Final_Score">React_Final_Score</label>
+    <input type="Number" name="React_Final_Score">
+    <br>
+    <br>
+    <button type="submit" value="/Students/create" >
+        Add New Student
+    </button>
+
+</form>
+</body>
+
+
