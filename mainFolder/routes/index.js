@@ -13,7 +13,7 @@ router.get('/signUpUser567emp',homeController.signUp) ;
 
 router.post('/create', homeController.create);
 
-router.get('/signIn',homeController.signIn);
+router.get('/',homeController.signIn);
 router.post('/create-session', passport.authenticate('local', { failureRedirect: '/signIn.ejs', failureMessage: true }),
 homeController.createSession) ;
 
