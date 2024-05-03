@@ -1,4 +1,4 @@
-# Placement-Cell-Website
+# Placement-Cell-Project
 
 I have created a website for an employee working in placement cell department of any institution.
 # Setup
