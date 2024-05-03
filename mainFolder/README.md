@@ -8,7 +8,7 @@ I have created a website for an employee working in placement cell department of
 4. run node index.js
    
    
-#Languages and Technologies used
+# Languages and Technologies used
 I have used JavaScript, EJS, Nodejs, MongoDb, Express.
 
 
