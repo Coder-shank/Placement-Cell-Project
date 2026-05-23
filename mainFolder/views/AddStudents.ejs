@@ -1,47 +1,161 @@
 <head>
-    <%- include('_bootstrap_meta')%>
-  
-  </head>
-  <body style="background-color: #e6e9e9">
-    <br>
+  <%- include('_bootstrap_meta')%>
 
+  <style>
+    body {
+      background: linear-gradient(to right, #dbeafe, #f0fdfa);
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-    <h2> Add Student Details</h2>
-    <br>
- 
+    .container {
+      width: 70%;
+      margin: 40px auto;
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+    }
 
-<form action="/Students/create" method="post">
+    h2 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
 
-    <label for="Name"> Student Name</label>
-    <input type="text" name="Name">
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-    <label for="Batch"> Batch </label>
-    <input type="number" name="Batch">
+    .form-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-    <label for="College">College</label>
-    <input type="text" name="College">
+    .input-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
 
-    <label for="Status">Status</label>
-    <input type="text" name="Status">
-    <br>
+    label {
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #374151;
+    }
 
-    
-    <label for="DSA_Final_Score">DSA_Final_Score</label>
-    <input type="Number" name="DSA_Final_Score">
-    
-    <label for="WebD_Final_Score">WebD_Final_Score</label>
-    <input type="Number" name="WebD_Final_Score">
-    
+    input {
+      padding: 12px;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: 0.3s ease;
+    }
 
-    <label for="React_Final_Score">React_Final_Score</label>
-    <input type="Number" name="React_Final_Score">
-    <br>
-    <br>
-    <button type="submit" value="/Students/create" >
+    input:focus {
+      border-color: #2563eb;
+      outline: none;
+      box-shadow: 0px 0px 8px rgba(37, 99, 235, 0.3);
+    }
+
+    button {
+      background: linear-gradient(to right, #2563eb, #1d4ed8);
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(to right, #1d4ed8, #1e40af);
+      box-shadow: 0px 5px 15px rgba(37, 99, 235, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+        padding: 20px;
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h2>Add Student Details</h2>
+
+    <form action="/Students/create" method="post">
+
+      <div class="form-row">
+
+        <div class="input-group">
+          <label for="Name">Student Name</label>
+          <input type="text" name="Name" placeholder="Enter student name">
+        </div>
+
+        <div class="input-group">
+          <label for="Batch">Batch</label>
+          <input type="number" name="Batch" placeholder="Enter batch">
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="input-group">
+          <label for="College">College</label>
+          <input type="text" name="College" placeholder="Enter college name">
+        </div>
+
+        <div class="input-group">
+          <label for="Status">Status</label>
+          <input type="text" name="Status" placeholder="Placed / Not Placed">
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="input-group">
+          <label for="DSA_Final_Score">DSA Final Score</label>
+          <input type="number" name="DSA_Final_Score" placeholder="Enter DSA score">
+        </div>
+
+        <div class="input-group">
+          <label for="WebD_Final_Score">WebD Final Score</label>
+          <input type="number" name="WebD_Final_Score" placeholder="Enter WebD score">
+        </div>
+
+        <div class="input-group">
+          <label for="React_Final_Score">React Final Score</label>
+          <input type="number" name="React_Final_Score" placeholder="Enter React score">
+        </div>
+
+      </div>
+
+      <button type="submit">
         Add New Student
-    </button>
+      </button>
 
-</form>
+    </form>
+
+  </div>
+
 </body>
-
-
