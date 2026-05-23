@@ -1,30 +1,138 @@
 <head>
-    <%- include('_bootstrap_meta')%>
-    <title>Sign Up</title>
+  <%- include('_bootstrap_meta')%>
+  <title>Student Dashboard</title>
+
+  <style>
+    body {
+      background: linear-gradient(to right, #dbeafe, #f0fdfa);
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 30px;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+      background-color: white;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 30px;
+    }
+
+    .student-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .student-item {
+      background-color: #f8fafc;
+      margin-bottom: 15px;
+      padding: 18px;
+      border-radius: 12px;
+      transition: 0.3s ease;
+      border-left: 6px solid #2563eb;
+    }
+
+    .student-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      background-color: #eff6ff;
+    }
+
+    .student-link {
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      color: #1e293b;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s ease;
+      color: white;
+      display: inline-block;
+    }
+
+    .add-btn {
+      background: linear-gradient(to right, #2563eb, #1d4ed8);
+    }
+
+    .signup-btn {
+      background: linear-gradient(to right, #059669, #047857);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h3 {
+      margin-top: 40px;
+      color: #334155;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 95%;
+        padding: 20px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-<body style="background-color: #e6e9e9">
-<ul>
-    <% for(let student of students){ %>
-        
-        <li>
-            
-           <a href="/Students/<%= student.id %>" >
+
+<body>
+
+  <div class="container">
+
+    <h1>Student Dashboard</h1>
+
+    <ul class="student-list">
+      <% for(let student of students){ %>
+
+        <li class="student-item">
+          <a href="/Students/<%= student.id %>" class="student-link">
             <%= student.Name %>
-
-           </a> 
-           
-
+          </a>
         </li>
-    <% } %> 
-   
-</ul>
 
-<a href="/Students/SsignUp"> Add Student </a>
-<br>
-<br>
+      <% } %>
+    </ul>
 
-<h3> Click below to register a new Employee </h3>
+    <div class="buttons">
 
-<a href = "signUpUser567emp"> Employee Sign-Up</a>
+      <a href="/Students/SsignUp" class="btn add-btn">
+        Add Student
+      </a>
+
+      <a href="signUpUser567emp" class="btn signup-btn">
+        Employee Sign-Up
+      </a>
+
+    </div>
+
+    <h3>Click above to register a new employee</h3>
+
+  </div>
+
 </body>
-
