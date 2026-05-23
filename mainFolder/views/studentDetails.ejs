@@ -1,44 +1,265 @@
 <head>
-    <%- include('_bootstrap_meta')%>
- 
-  </head>
-  <body style="background-color: #e6e9e9">
-<p> Name: <%= student.Name %> </p>
-<p> College:  <%= student.College%> </p>
-<p> Batch: <%=  student.Batch %> </p>
-<p> DSA_Final_Score:<%=student.DSA_Final_Score %> </p>
-<p> WebD_Final_Score:<%=student.WebD_Final_Score %> </p>
-<p> React_Final_Score:<%=student.React_Final_Score %> </p>
-<p> Interview:
-</p>
-<ul>
-<% for (let i of student.Interview){ %>
-<li>
-    <a href="/Students/InterviewHome/<%=i.id %>"> 
-        <%= i.Company_Name %>
-    </a>
-</li>
-<% } %>
-</ul>
+  <%- include('_bootstrap_meta')%>
 
-<form action="/Students/scheduleInterview" method="post">
+  <title>Student Details</title>
 
-    <label for="Company_Name"> Company_Name</label>
-    <input type="text" name="Company_Name">
+  <style>
+    body {
+      background: linear-gradient(to right, #dbeafe, #f0fdfa);
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 30px;
+    }
 
-    <!-- <label for="Student"> Student</label>  -->
-    <input type="hidden" value="<%=student.id %>" name="Student"> 
-    
-    <label for="Date">Date</label>
-    <input type="date" name="Date">
+    .container {
+      width: 75%;
+      margin: auto;
+      background-color: white;
+      padding: 40px;
+      border-radius: 18px;
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.12);
+    }
 
-    <label for="Result"> Didn't Attempt </label>
-    <input type="checkbox" name="Result" value="Didn't-Attempt">
-    
+    h1 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 35px;
+    }
 
-    <button type="submit" value="/Students/scheduleInterview" >
-       Schedule new Interview
-    </button>
+    .student-card {
+      background-color: #f8fafc;
+      padding: 25px;
+      border-radius: 14px;
+      margin-bottom: 35px;
+      border-left: 6px solid #2563eb;
+    }
 
-</form>
+    .student-card p {
+      font-size: 18px;
+      margin: 14px 0;
+      color: #334155;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #0f172a;
+    }
+
+    .interview-section {
+      margin-top: 25px;
+    }
+
+    .interview-section h2 {
+      color: #1e3a8a;
+      margin-bottom: 20px;
+    }
+
+    .interview-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .interview-item {
+      background-color: #eff6ff;
+      margin-bottom: 15px;
+      padding: 16px;
+      border-radius: 12px;
+      transition: 0.3s ease;
+    }
+
+    .interview-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .interview-link {
+      text-decoration: none;
+      color: #1e293b;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .form-section {
+      margin-top: 40px;
+      background-color: #f8fafc;
+      padding: 30px;
+      border-radius: 14px;
+    }
+
+    .form-section h2 {
+      color: #1e3a8a;
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #334155;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+      padding: 14px;
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 15px;
+      transition: 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="date"]:focus {
+      border-color: #2563eb;
+      outline: none;
+      box-shadow: 0px 0px 8px rgba(37, 99, 235, 0.3);
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      background: linear-gradient(to right, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 8px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Student Details</h1>
+
+    <div class="student-card">
+
+      <p>
+        <span class="label">Name:</span>
+        <%= student.Name %>
+      </p>
+
+      <p>
+        <span class="label">College:</span>
+        <%= student.College %>
+      </p>
+
+      <p>
+        <span class="label">Batch:</span>
+        <%= student.Batch %>
+      </p>
+
+      <p>
+        <span class="label">DSA Final Score:</span>
+        <%= student.DSA_Final_Score %>
+      </p>
+
+      <p>
+        <span class="label">WebD Final Score:</span>
+        <%= student.WebD_Final_Score %>
+      </p>
+
+      <p>
+        <span class="label">React Final Score:</span>
+        <%= student.React_Final_Score %>
+      </p>
+
+    </div>
+
+    <div class="interview-section">
+
+      <h2>Interview Records</h2>
+
+      <ul class="interview-list">
+
+        <% for (let i of student.Interview){ %>
+
+          <li class="interview-item">
+
+            <a href="/Students/InterviewHome/<%= i.id %>" class="interview-link">
+              <%= i.Company_Name %>
+            </a>
+
+          </li>
+
+        <% } %>
+
+      </ul>
+
+    </div>
+
+    <div class="form-section">
+
+      <h2>Schedule New Interview</h2>
+
+      <form action="/Students/scheduleInterview" method="post">
+
+        <div class="input-group">
+          <label for="Company_Name">Company Name</label>
+          <input 
+            type="text" 
+            name="Company_Name"
+            placeholder="Enter company name"
+          >
+        </div>
+
+        <input type="hidden" value="<%= student.id %>" name="Student">
+
+        <div class="input-group">
+          <label for="Date">Interview Date</label>
+          <input type="date" name="Date">
+        </div>
+
+        <div class="checkbox-group">
+          <input 
+            type="checkbox" 
+            name="Result" 
+            value="Didn't-Attempt"
+          >
+
+          <label for="Result">Didn't Attempt</label>
+        </div>
+
+        <button type="submit">
+          Schedule New Interview
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
 </body>
