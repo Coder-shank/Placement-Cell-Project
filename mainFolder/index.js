@@ -35,10 +35,8 @@ app.use(passport.session());
 //takes user form req and saves it in res.
 app.use(passport.setAuthenticatedUser);
 
-// app.use('/', require('./routes/index'));
-app.get("/", (req,res)=>{
-   res.send("Working")
-})
+app.use('/', require('./routes/index'));
+
 
 app.listen(PORT, () => {
    console.log(`Server running on port ${PORT}`);
