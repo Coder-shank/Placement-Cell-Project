@@ -1,6 +1,7 @@
+require("dotenv").config();
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
@@ -37,10 +38,6 @@ app.use(passport.setAuthenticatedUser);
 app.use('/', require('./routes/index'));
 
 
-
-app.listen(port, function(err){
-    if (err){
-        console.log(error, "Error found in running server")
-    }
-    console.log("Server is running on port:", port)
-})
+app.listen(PORT, () => {
+   console.log(`Server running on port ${PORT}`);
+});
