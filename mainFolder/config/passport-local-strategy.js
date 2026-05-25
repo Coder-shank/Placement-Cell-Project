@@ -45,24 +45,40 @@ async (req, email, password, done) => {
 //Serializing Model to Decide the field to store in cookie
 
 passport.serializeUser((user,done)=>{
+
+    console.log("STEP 9 -> serializeUser:", user.id);
+
     done(null,user.id)
 })
 
 //Deserializing Data form cookie to a User Model
 
-passport.deserializeUser((id,done)=>{
-    employeeCollection.findById(id,(err,user)=>{
-        if (err) {
-            console.log("Error in Finding User --> Passport")
-            return done(err)
+passport.deserializeUser(async (id,done)=>{
+
+    console.log("STEP 10 -> deserializeUser Started");
+
+    try{
+
+        const user = await employeeCollection.findById(id);
+
+        console.log("STEP 11 -> User From Session:", user);
+
+        if(!user){
+            console.log("STEP 12 -> No User Found");
+            return done(null,false)
         }
 
-        if(!user) return done(null,false)
-
         return done(null,user)
-    })
-})
 
+    }catch(err){
+
+        console.log("STEP 13 -> Deserialize Error:", err);
+
+        return done(err);
+
+    }
+
+})
 
 passport.checkAuthentication = (req,res,next)=>{
     //If User is Signed in
