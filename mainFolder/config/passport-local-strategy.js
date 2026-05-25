@@ -11,20 +11,31 @@ passport.use(new LocalStrategy({
 },
 async (req, email, password, done) => {
 
+    console.log("STEP 3 -> LocalStrategy Started");
+
     try {
+
+        console.log("STEP 4 -> Email:", email);
 
         const user = await employeeCollection.findOne({ email: email });
 
+        console.log("STEP 5 -> User Found:", user);
+
         if (!user || user.password !== password) {
-            console.log("Invalid Username/Password");
+
+            console.log("STEP 6 -> Invalid Credentials");
+
             return done(null, false);
         }
+
+        console.log("STEP 7 -> Login Successful");
 
         return done(null, user);
 
     } catch (err) {
 
-        console.log("Error in Finding User --> Passport");
+        console.log("STEP 8 -> Error:", err);
+
         return done(err);
 
     }
