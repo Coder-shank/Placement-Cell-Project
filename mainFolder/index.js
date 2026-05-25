@@ -20,12 +20,17 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 
 app.use(session({
-    name: "Learning",
-    secret: 'keyboard cat',
-    resave: false,
+    name: 'placementcell',
+    secret: 'placementcellsecret',
     saveUninitialized: false,
-    cookie: { secure: true , maxAge: (1000*60*30)}
-  }));
+    resave: false,
+    cookie: {
+        maxAge: (1000 * 60 * 60 * 24),
+        secure: true,
+        httpOnly: true,
+        sameSite: 'none'
+    }
+}));
 
 //to initiate / start ..authentication 
 app.use(passport.initialize());
