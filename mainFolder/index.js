@@ -57,6 +57,13 @@ app.use((req,res,next)=>{
 })
 app.use('/', require('./routes/index'));
 console.log("ROUTES LOADED");
+app.use((err, req, res, next) => {
+
+    console.log("GLOBAL ERROR:", err);
+
+    return res.status(500).send(err.message);
+
+});
 
 
 app.listen(PORT, () => {
