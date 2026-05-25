@@ -16,10 +16,22 @@ router.post('/create', homeController.create);
 router.get('/',homeController.signIn);
 router.post(
     '/create-session',
+
+    (req,res,next)=>{
+        console.log("STEP 1 -> Route Hit");
+        next();
+    },
+
     passport.authenticate('local', {
         failureRedirect: '/',
         failureMessage: true
     }),
+
+    (req,res,next)=>{
+        console.log("STEP 2 -> Passport Passed");
+        next();
+    },
+
     homeController.createSession
 );
 
