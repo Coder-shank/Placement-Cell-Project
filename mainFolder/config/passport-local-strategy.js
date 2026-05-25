@@ -5,26 +5,31 @@ const LocalStrategy = require('passport-local').Strategy
 //Model
 const employeeCollection= require('../models/Employee')
 
-
 passport.use(new LocalStrategy({
-    usernameField : 'email',
+    usernameField: 'email',
     passReqToCallback: true,
-},(req,email,password,done)=> {
-    employeeCollection.findOne({email: email}, (err, user) => {
-        if (err) {
-            // req.flash('error','Error in Finding User')
-            console.log("Error in Finding User --> Passport")
-            return done(err)
-        }
-        if (!user || user.password !== password) {
-            // req.flash('error','Invalid Username/Password')
-            console.log("Invalid Username/Password")
-            return done(null, false)
-        }
-        return done(null, user)
-    })
-}))
+},
+async (req, email, password, done) => {
 
+    try {
+
+        const user = await employeeCollection.findOne({ email: email });
+
+        if (!user || user.password !== password) {
+            console.log("Invalid Username/Password");
+            return done(null, false);
+        }
+
+        return done(null, user);
+
+    } catch (err) {
+
+        console.log("Error in Finding User --> Passport");
+        return done(err);
+
+    }
+
+}));
 
 //Serializing Model to Decide the field to store in cookie
 
