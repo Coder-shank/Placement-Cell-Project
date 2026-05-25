@@ -35,13 +35,15 @@ passport.serializeUser((user,done)=>{
 //Deserializing Data form cookie to a User Model
 
 passport.deserializeUser((id,done)=>{
-    User.findById(id,(err,user)=>{
+    employeeCollection.findById(id,(err,user)=>{
         if (err) {
             console.log("Error in Finding User --> Passport")
             return done(err)
         }
+
         if(!user) return done(null,false)
-        else return done(null,user)
+
+        return done(null,user)
     })
 })
 
