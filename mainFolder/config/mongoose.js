@@ -1,19 +1,22 @@
-// const mongoose = require("mongoose");
-// require("dotenv").config();
+const mongoose = require("mongoose");
+require("dotenv").config();
 
-// mongoose.connect(process.env.MONGO_URL);
+async function connectDB() {
 
-// const db = mongoose.connection;
+    try {
 
-// db.on("error", console.error.bind(console, "Error connecting to MongoDB"));
+        await mongoose.connect(process.env.MONGO_URL);
 
-// db.once("open", function () {
-//   console.log("Connected to Database :: MongoDB");
-// });
+        console.log("Connected to Database :: MongoDB");
 
-// module.exports = db;
-import mongoose from "mongoose";
+    } catch (err) {
 
-mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log("MongoDB Connected"))
-.catch(err => console.log(err));
+        console.log("MongoDB Connection Error:", err);
+
+    }
+
+}
+
+connectDB();
+
+module.exports = mongoose.connection;
