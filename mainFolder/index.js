@@ -21,17 +21,20 @@ app.set('view engine', 'ejs');
 app.set('trust proxy', 1);
 app.use(session({
     name: 'placementcell',
-    secret: 'placementcellsecret',
+    secret: process.env.SESSION_SECRET || 'placementcellsecret',
     saveUninitialized: false,
     resave: false,
     cookie: {
         maxAge: (1000 * 60 * 60 * 24),
-        secure: true,
         httpOnly: true,
-        sameSite: 'none'
+
+        // only secure on production
+        secure: process.env.NODE_ENV === "production",
+
+        // better compatibility
+        sameSite: "lax"
     }
 }));
-
 //to initiate / start ..authentication 
 app.use(passport.initialize());
 // to save req in cookies 
