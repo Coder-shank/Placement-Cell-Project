@@ -1,3 +1,4 @@
+console.log("APP STARTED");
 require("dotenv").config();
 const express = require('express');
 const app = express();
@@ -48,7 +49,12 @@ app.use(passport.session());
 //takes user form req and saves it in res.
 app.use(passport.setAuthenticatedUser);
 
+app.use((req,res,next)=>{
+    console.log("REQUEST RECEIVED:", req.method, req.url);
+    next();
+})
 app.use('/', require('./routes/index'));
+console.log("ROUTES LOADED");
 
 
 app.listen(PORT, () => {
