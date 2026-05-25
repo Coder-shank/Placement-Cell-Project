@@ -39,7 +39,13 @@ module.exports.signIn = function(req,res){
 };
 
 module.exports.createSession =  async function(req,res){
+
+    console.log("STEP 14 -> Controller Started");
+
     let students = await StudentsCollection.find({})
+
+    console.log("STEP 15 -> Students Fetched");
+
     return res.render('home',{students});
 
 }
