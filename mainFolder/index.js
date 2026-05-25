@@ -35,6 +35,11 @@ app.use(session({
         sameSite: "lax"
     }
 }));
+app.use((req,res,next)=>{
+    console.log("SESSION:", req.session);
+    console.log("USER:", req.user);
+    next();
+})
 //to initiate / start ..authentication 
 app.use(passport.initialize());
 // to save req in cookies 
