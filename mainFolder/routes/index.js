@@ -7,8 +7,7 @@ const passport= require('passport');
 const {Parser} = require('json2csv');
 //employee sign in ,sign-Up
 
-router.get('/signUp.ejs', passport.authenticate('local', { failureRedirect: '/signUp.ejs', failureMessage: true }),
-homeController.signUp) ;
+router.get('/signUp.ejs', homeController.signUp) ;
 
 router.get('/signUpUser567emp',homeController.signUp) ;
 
