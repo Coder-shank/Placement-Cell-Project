@@ -38,16 +38,26 @@ module.exports.signIn = function(req,res){
     return res.render('signIn')
 };
 
-module.exports.createSession =  async function(req,res){
+module.exports.createSession = async function(req,res){
 
-    console.log("STEP 14 -> Controller Started");
+    try{
 
-    let students = await StudentsCollection.find({})
+        console.log("CONTROLLER STARTED");
 
-    console.log("STEP 15 -> Students Fetched");
+        let students = await StudentsCollection.find({});
 
-    return res.render('home',{students});
+        console.log("STUDENTS FETCHED");
 
+        return res.render('home',{students});
+
+    }catch(err){
+
+        console.log("CONTROLLER ERROR:", err);
+
+        return res.send(err);
+        
+    }
+    
 }
 
 //students related ..
