@@ -14,8 +14,14 @@ router.get('/signUpUser567emp',homeController.signUp) ;
 router.post('/create', homeController.create);
 
 router.get('/',homeController.signIn);
-router.post('/create-session', passport.authenticate('local', { failureRedirect: '/', failureMessage: true }),
-homeController.createSession) ;
+router.post(
+    '/create-session',
+    passport.authenticate('local', {
+        failureRedirect: '/',
+        failureMessage: true
+    }),
+    homeController.createSession
+);
 
 // students related
 
