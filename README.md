@@ -159,4 +159,4 @@ npm start
 
 ## Author
 
-Shashank Pandey
+Shashank Shekhar Pandey
