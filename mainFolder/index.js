@@ -22,20 +22,22 @@ app.set('view engine', 'ejs');
 app.set('trust proxy', 1);
 app.use(session({
     name: 'placementcell',
-    secret: process.env.SESSION_SECRET || 'placementcellsecret',
+    secret: 'placementcellsecret',
     saveUninitialized: false,
     resave: false,
+
     cookie: {
         maxAge: (1000 * 60 * 60 * 24),
+
         httpOnly: true,
 
-        // only secure on production
-        secure: process.env.NODE_ENV === "production",
+        secure: false,
 
-        // better compatibility
-        sameSite: "lax"
+        sameSite: 'lax'
     }
-}));
+})); 
+
+
 app.use((req,res,next)=>{
     console.log("SESSION:", req.session);
     console.log("USER:", req.user);
