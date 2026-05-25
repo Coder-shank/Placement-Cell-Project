@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 
-const db = require('./config/mongoose');
+require('./config/mongoose');
 const information= require('./models/Interview')
 const fs = require('fs');
 
